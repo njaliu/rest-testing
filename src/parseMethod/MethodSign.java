@@ -1,4 +1,4 @@
-
+package parseMethod;
 public class MethodSign {
 	private String className;
 	private String methodName;

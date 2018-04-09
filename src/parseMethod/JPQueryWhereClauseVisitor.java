@@ -1,3 +1,4 @@
+package parseMethod;
 import org.eclipse.persistence.jpa.jpql.parser.AbsExpression;
 import org.eclipse.persistence.jpa.jpql.parser.AbstractSchemaName;
 import org.eclipse.persistence.jpa.jpql.parser.AdditionExpression;
@@ -95,510 +96,344 @@ public class JPQueryWhereClauseVisitor implements ExpressionVisitor {
 	
 	@Override
 	public void visit(AbsExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(AbstractSchemaName expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(AdditionExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(AllOrAnyExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(AndExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(ArithmeticFactor expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(AvgFunction expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(BadExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(BetweenExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(CaseExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(CoalesceExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(CollectionExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(CollectionMemberDeclaration expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(CollectionMemberExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(CollectionValuedPathExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(ComparisonExpression expression) {
-		// TODO Auto-generated method stub
 		expression.getLeftExpression().accept(this);
 		expression.getRightExpression().accept(this);
 	}
 
 	@Override
 	public void visit(ConcatExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(ConstructorExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(CountFunction expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(DateTime expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(DeleteClause expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(DeleteStatement expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(DivisionExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(EmptyCollectionComparisonExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(EntityTypeLiteral expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(EntryExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(ExistsExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(FromClause expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(FunctionExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(GroupByClause expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(HavingClause expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(IdentificationVariable expression) {
-		// TODO Auto-generated method stub
 		String a = expression.getVariableName();
 		jqmd.addReadColums(a);
 	}
 
 	@Override
 	public void visit(IdentificationVariableDeclaration expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(IndexExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(InExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(InputParameter expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(Join expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(JPQLExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(KeyExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(KeywordExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(LengthExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(LikeExpression expression) {
-		// TODO Auto-generated method stub
 		Expression a = expression.getStringExpression();
 		expression.getStringExpression().accept(this);
 	}
 
 	@Override
 	public void visit(LocateExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(LowerExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(MaxFunction expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(MinFunction expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(ModExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(MultiplicationExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(NotExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(NullComparisonExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(NullExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(NullIfExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(NumericLiteral expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(ObjectExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(OnClause expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(OrderByClause expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(OrderByItem expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(OrExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(RangeVariableDeclaration expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(ResultVariable expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(SelectClause expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(SelectStatement expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(SimpleFromClause expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(SimpleSelectClause expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(SimpleSelectStatement expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(SizeExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(SqrtExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(StateFieldPathExpression expression) {
-		// TODO Auto-generated method stub
-
 		jqmd.addReadColums(expression.toString());
 	}
 
 	@Override
 	public void visit(StringLiteral expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(SubExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(SubstringExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(SubtractionExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(SumFunction expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(TreatExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(TrimExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(TypeExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(UnknownExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(UpdateClause expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(UpdateItem expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(UpdateStatement expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(UpperExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(ValueExpression expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(WhenClause expression) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visit(WhereClause expression) {
-		// TODO Auto-generated method stub
-		
 	}
-
 }

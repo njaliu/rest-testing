@@ -1,3 +1,4 @@
+package parseMethod;
 import net.sf.jsqlparser.schema.Table;
 
 public class QueryTable {

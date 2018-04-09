@@ -1,3 +1,4 @@
+package parseMethod;
 import net.sf.jsqlparser.expression.AllComparisonExpression;
 import net.sf.jsqlparser.expression.AnyComparisonExpression;
 import net.sf.jsqlparser.expression.BinaryExpression;
@@ -59,13 +60,9 @@ class NativeSelectVisitor implements SelectVisitor, SelectItemVisitor, FromItemV
 			this.qmd = qmd;
 		}
 		
-		//SelectVisitor接口实现
+		/** SelectVisitor接口实现. */
 		public void visit(PlainSelect plainSelect) {
 			plainSelect.getFromItem().accept(this);
-			
-			if(plainSelect.getJoins() != null) {
-				//处理join
-			}
 			
 			if(plainSelect.getWhere() != null) {
 				plainSelect.getWhere().accept(this);
@@ -76,20 +73,18 @@ class NativeSelectVisitor implements SelectVisitor, SelectItemVisitor, FromItemV
 			//for(Iterator<E> iter=union.getPlainSelects().iterator(); iter.hasNext();)
 		}
 		
-		//FromItemVisitor接口实现
+		/** FromItemVisitor接口实现. */
 		public void visit(SubJoin subjoin) {
-			
 		}
 		
 		public void visit(SubSelect subselect) {
-			
 		}
 		
 		public void visit(Table tablename) {
 			qmd.addTable(tablename);
 		}
 		
-		//ExpressionVisitor接口实现
+		/** ExpressionVisitor接口实现. */
 		public void 	visit(Addition addition) {
 			visitBinaryExpression(addition);
 		}
@@ -128,7 +123,6 @@ class NativeSelectVisitor implements SelectVisitor, SelectItemVisitor, FromItemV
 		 }
 		           
 		public void	visit(DateValue dateValue) {
-			
 		}
 		           
 		public void	visit(Division division) {
@@ -136,7 +130,6 @@ class NativeSelectVisitor implements SelectVisitor, SelectItemVisitor, FromItemV
 		 }
 		           
 		public void	visit(DoubleValue doubleValue) {
-			
 		}
 		           
 		public void	visit(EqualsTo equalsTo) {
@@ -145,7 +138,6 @@ class NativeSelectVisitor implements SelectVisitor, SelectItemVisitor, FromItemV
 		           
 		public void	visit(ExistsExpression existsExpression) {
 			existsExpression.accept(this);
-			
 		}
 		           
 		public void	visit(Function function) {
@@ -161,7 +153,6 @@ class NativeSelectVisitor implements SelectVisitor, SelectItemVisitor, FromItemV
 		}
 		           
 		public void	visit(InExpression inExpression) {
-			
 		}
 		           
 		public void	visit(InverseExpression inverseExpression) {
@@ -173,7 +164,6 @@ class NativeSelectVisitor implements SelectVisitor, SelectItemVisitor, FromItemV
 		}
 		           
 		public void	visit(JdbcParameter jdbcParameter) {
-			
 		}
 		           
 		public void	visit(LikeExpression likeExpression) {
@@ -181,7 +171,6 @@ class NativeSelectVisitor implements SelectVisitor, SelectItemVisitor, FromItemV
 		}
 		           
 		public void	visit(LongValue longValue) {
-			
 		}
 		           
 		public void	visit(MinorThan minorThan) {
@@ -201,7 +190,6 @@ class NativeSelectVisitor implements SelectVisitor, SelectItemVisitor, FromItemV
 		}
 		           
 		public void	visit(NullValue nullValue) {
-			 
 		 }
 		           
 		public void	visit(OrExpression orExpression) {
@@ -213,28 +201,25 @@ class NativeSelectVisitor implements SelectVisitor, SelectItemVisitor, FromItemV
 		}
 		           
 		public void	visit(StringValue stringValue) {
-			
 		}
 		           
-//		public void	visit(SubSelect subSelect) 
+/** Public void visit(SubSelect subSelect). */
 		           
 		public void	visit(Subtraction subtraction) {
 			visitBinaryExpression(subtraction);
 		}
 		           
 		public void	visit(TimestampValue timestampValue) {
-			
 		}
 		           
 		public void	visit(TimeValue timeValue) {
-			
 		}
 		           
 		public void	visit(WhenClause whenClause) {
 			whenClause.getWhenExpression().accept(this);
 			whenClause.getThenExpression().accept(this);
 		}
-	   //自定义函数	
+	   /** 自定义函数. */
 		public void visitBinaryExpression(BinaryExpression be) {
 			be.getLeftExpression().accept(this);
 			be.getRightExpression().accept(this);
@@ -242,49 +227,33 @@ class NativeSelectVisitor implements SelectVisitor, SelectItemVisitor, FromItemV
 
 		@Override
 		public void visit(Concat arg0) {
-			// TODO Auto-generated method stub
-			
 		}
 	
 		@Override
 		public void visit(Matches arg0) {
-			// TODO Auto-generated method stub
-			
 		}
 	
 		@Override
 		public void visit(BitwiseAnd arg0) {
-			// TODO Auto-generated method stub
-			
 		}
 	
 		@Override
 		public void visit(BitwiseOr arg0) {
-			// TODO Auto-generated method stub
-			
 		}
 	
 		@Override
 		public void visit(BitwiseXor arg0) {
-			// TODO Auto-generated method stub
-			
 		}
-		//SelectItemVisitor接口实现
+		/** SelectItemVisitor接口实现. */
 		@Override
 		public void visit(AllColumns arg0) {
-			// TODO Auto-generated method stub
-			
 		}
 
 		@Override
 		public void visit(AllTableColumns arg0) {
-			// TODO Auto-generated method stub
-			
 		}
 
 		@Override
 		public void visit(SelectExpressionItem arg0) {
-			// TODO Auto-generated method stub
-			
 		}
 	}

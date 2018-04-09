@@ -1,3 +1,4 @@
+package parseMethod;
 import java.io.StringReader;
 import java.util.ArrayList;
 
@@ -13,7 +14,6 @@ import net.sf.jsqlparser.statement.Statement;
 
 import net.sf.jsqlparser.statement.select.Select;
 
-
 public class NativeQueryParser extends AbQueryParser{
 	QueryMetaData qmd;
 	
@@ -22,16 +22,14 @@ public class NativeQueryParser extends AbQueryParser{
 		qmd = new QueryMetaData();
 	}
 	
-	
-	public void parseQuery() {
+		public void parseQuery() {
 		CCJSqlParserManager pm = new CCJSqlParserManager();
 		Statement statement = null;
-		query = "SELECT * FROM MY_TABLE1, MY_TABLE2, (SELECT * FROM MY_TABLE3) LEFT OUTER JOIN MY_TABLE4 "+
-				" WHERE ID = (SELECT MAX(ID) FROM MY_TABLE5) AND ID2 IN (SELECT * FROM MY_TABLE6)" ;
+//		query = "SELECT * FROM MY_TABLE1, MY_TABLE2, (SELECT * FROM MY_TABLE3) LEFT OUTER JOIN MY_TABLE4 "+
+//				" WHERE ID = (SELECT MAX(ID) FROM MY_TABLE5) AND ID2 IN (SELECT * FROM MY_TABLE6)" ;
 		try {
 			statement = pm.parse(new StringReader(query));
 		} catch (JSQLParserException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(statement instanceof Select) {
@@ -39,16 +37,11 @@ public class NativeQueryParser extends AbQueryParser{
 			Select selectStatement = (Select) statement;
 			NativeSelectVisitor sp = new NativeSelectVisitor();
 			sp.parseSelect(selectStatement,qmd);
-			
 		}
 	}
 
-
 	@Override
 	public ArrayList<MetaData> dealWithData() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-}
+	}

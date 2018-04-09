@@ -1,3 +1,4 @@
+package parseMethod;
 import java.util.ArrayList;
 
 public abstract class AbQueryParser {
@@ -10,5 +11,4 @@ public abstract class AbQueryParser {
 	public abstract void parseQuery();
 
 	public abstract ArrayList<MetaData> dealWithData();
-	
 }

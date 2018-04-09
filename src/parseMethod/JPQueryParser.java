@@ -1,3 +1,4 @@
+package parseMethod;
 import java.util.ArrayList;
 
 import org.eclipse.persistence.jpa.jpql.parser.DeleteStatement;
@@ -37,7 +38,6 @@ public class JPQueryParser extends AbQueryParser{
 
 	@Override
 	public ArrayList<MetaData> dealWithData() {
-		// TODO Auto-generated method stub
 		return jqmd.dealWithData();
 	}
 }

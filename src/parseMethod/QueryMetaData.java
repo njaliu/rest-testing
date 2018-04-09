@@ -1,3 +1,4 @@
+package parseMethod;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +11,8 @@ public class QueryMetaData {
 	List<Column> readColumns;
 	
 	public QueryMetaData(){
-		tables = new ArrayList<QueryTable>();
-		readColumns = new ArrayList<Column>();
+		tables = new ArrayList<>();
+		readColumns = new ArrayList<>();
 	}
 	
 	public void addTable(Table table) {
@@ -22,10 +23,8 @@ public class QueryMetaData {
 	public void addColumn(Column column) {
 		readColumns.add(column);
 	}
-	
 }
 
 enum QueryKind{
 	INSERT, SELECT, UPDATE, DELETE
 }
-

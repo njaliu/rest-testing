@@ -1,3 +1,4 @@
+package parseMethod;
 import java.util.ArrayList;
 
 public class MetaData {
@@ -11,20 +12,19 @@ public class MetaData {
 	
 	public void addTable(String table) {
 		if(tables == null) {
-			tables = new ArrayList<String>();
+			tables = new ArrayList<>();
 		}
 		tables.add(table);
 	}
 	
 	public void addColumns(String column) {
 		if(columns == null) {
-			columns = new ArrayList<String>();
+			columns = new ArrayList<>();
 		}
 		columns.add(column);
 	}
 
 	public void setKind(String string) {
-		// TODO Auto-generated method stub
 		kind = string;
 	}
 	
@@ -40,5 +40,4 @@ public class MetaData {
 		strB.append("}");
 		return strB.toString();
 	}
-	
 }

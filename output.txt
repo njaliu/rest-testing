@@ -1,0 +1,1 @@
+{{org/springframework/samples/petclinic/owner/PetRepository,findPetTypes,()Ljava/util/List<Lorg/springframework/samples/petclinic/owner/PetType;>;}=[{read,[PetType],[PetType]}], {org/springframework/samples/petclinic/owner/PetRepository,save,null}=[], {org/springframework/samples/petclinic/owner/PetRepository,findById,null}=[{read,[Pet],[Id, all]}]}

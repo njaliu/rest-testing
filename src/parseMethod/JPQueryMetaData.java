@@ -1,3 +1,4 @@
+package parseMethod;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -6,42 +7,38 @@ import org.eclipse.persistence.jpa.jpql.utility.iterable.ListIterable;
 
 public class JPQueryMetaData {
 	private QueryKind kind;
-	private HashMap<String,String> tables;   //varible->TableName
+	/** Varible->TableName. */
+	private HashMap<String,String> tables;
 	private ArrayList<String> readColums;
 	private ArrayList<String> writeColums;
 	
 	public void setKind(QueryKind select) {
-		// TODO Auto-generated method stub
 		kind = select;
 	}
 
 	public void addTable(Expression s, Expression v) {
-		// TODO Auto-generated method stub
 		if(tables == null) {
-			tables = new HashMap<String,String>();
+			tables = new HashMap<>();
 		}
 		tables.put(v.toString(), s.toString());
 	}
 
 	public void addReadColums(String paths) {
-		// TODO Auto-generated method stub
 		if(readColums == null) {
-			readColums = new ArrayList<String>();
+			readColums = new ArrayList<>();
 		}
 		readColums.add(paths);
 	}
 
 	public void addWriteColums(String string) {
-		// TODO Auto-generated method stub
 		if(writeColums == null) {
-			writeColums = new ArrayList<String>();
+			writeColums = new ArrayList<>();
 		}
 		writeColums.add(string);
 	}
 
 	public ArrayList<MetaData> dealWithData() {
-		// TODO Auto-generated method stub
-		ArrayList<MetaData> results = new ArrayList<MetaData>();
+		ArrayList<MetaData> results = new ArrayList<>();
 		if(readColums != null) {
 			MetaData md = new MetaData();
 			md.setKind("read");
@@ -79,5 +76,4 @@ public class JPQueryMetaData {
 		
 		return results;
 	}
-	
 }
