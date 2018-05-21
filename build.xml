@@ -4,7 +4,9 @@
 	<property name="src.dir" value="src" />
 	<property name="build.dir" value="build" />
 	<property name="lib.dir" value="lib" />
-	<property name="name" value="rest-testing" />
+	<property name="name1" value="rest-testing-parseMethod" />
+	<property name="name2" value="rest-testing-agent" />
+	<property name="name3" value="rest-testing-logger" />
 
 	<path id="master-classpath">
 		<fileset dir="${lib.dir}">
@@ -13,7 +15,21 @@
 		<pathelement path="${build.dir}" />
 	</path>
 	
-	<pathconvert property="lib" pathsep=" ">  
+	<pathconvert property="lib1" pathsep=" ">  
+		        <mapper>  
+		            <chainedmapper>  
+		                <flattenmapper />  
+		                <globmapper from="*" to="lib/*" />  
+		            </chainedmapper>  
+		        </mapper>  
+		        <fileset dir="${lib.dir}">  
+		            <include name="asm-all-5.0.4.jar" />  
+		        		<include name="eclipselink-2.6.1.jar" />
+		        		<include name="json.org.jar" />
+		        </fileset>  
+	</pathconvert>  
+	
+	<pathconvert property="lib2" pathsep=" ">  
 	        <mapper>  
 	            <chainedmapper>  
 	                <flattenmapper />  
@@ -21,7 +37,8 @@
 	            </chainedmapper>  
 	        </mapper>  
 	        <fileset dir="${lib.dir}">  
-	            <include name="*.jar" />  
+	            <include name="asm-all-5.0.4.jar" />  
+	        		<include name="json.org.jar" />
 	        </fileset>  
 	</pathconvert>  
 	
@@ -39,22 +56,47 @@
 		description="Compress the java class files to jar">
 
 		<mkdir dir="${build.dir}/jar" />
-		<delete file="${build.dir}/jar/${name}.jar" />		
+		<delete file="${build.dir}/jar/${name1}.jar" />		
 		<manifest file="${build.dir}/MANIFEST.MF">
-			<attribute name="Class-Path" value=". ${lib}"/>
+			<attribute name="Class-Path" value=". ${lib1}"/>
 			<attribute name="Built-By" value="${user.name}" />
-			<attribute name="Premain-Class" value="rest.instrument.InstructionTransformer" />
-			<attribute name="Can-Redefine-Classes" value="true"/>
+			<attribute name="Main-Class" value="rest.parseMethod.ForQueryClassVisitor"/>
 		</manifest>
-
 		
-		<jar destfile="${build.dir}/jar/${name}.jar"
-			basedir="${build.dir}/classes"
-			manifest="${build.dir}/MANIFEST.MF">
-			<zipfileset dir="${lib.dir}" prefix="lib">
-			    <include name="*.jar"/>
-			</zipfileset>
+		<jar destfile="${build.dir}/jar/${name1}.jar"
+					includes="rest/parseMethod/**"
+					basedir="${build.dir}/classes"
+					manifest="${build.dir}/MANIFEST.MF">
 		</jar>
+		
+		<delete file="${build.dir}/jar/${name2}.jar" />	
+		<delete file="${build.dir}/MANIFEST.MF" />
+		<manifest file="${build.dir}/MANIFEST.MF">
+				<attribute name="Class-Path" value=". ${lib2}"/>
+				<attribute name="Built-By" value="${user.name}" />
+				<attribute name="Premain-Class" value="rest.instrument.InstructionTransformer" />
+				<attribute name="Can-Redefine-Classes" value="true"/>
+		</manifest>
+		
+		<jar destfile="${build.dir}/jar/${name2}.jar"
+							includes="rest/instrument/**"
+							basedir="${build.dir}/classes"
+							manifest="${build.dir}/MANIFEST.MF">
+		</jar>
+		
+		<delete file="${build.dir}/jar/${name3}.jar" />	
+		<delete file="${build.dir}/MANIFEST.MF" />
+		<manifest file="${build.dir}/MANIFEST.MF">
+						<attribute name="Built-By" value="${user.name}" />
+		</manifest>
+				
+		<jar destfile="${build.dir}/jar/${name3}.jar"
+									includes="rest/logger/**"
+									basedir="${build.dir}/classes"
+									manifest="${build.dir}/MANIFEST.MF">
+		</jar>
+				
+		
 	</target>
 
 	<target name="cleanup"> 

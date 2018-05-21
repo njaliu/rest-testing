@@ -16,12 +16,11 @@ public class Config {
   private String loggerClass;
 
   public Config() {
-      loggerClass = "rest.logger.FileLogger";
-      printTrace = true;
-      traceFileName = "trace.txt"; 
-      analysisClass ="rest/logger/DJVM";
-      jsonFile = "output.json";
-     
+      loggerClass = System.getProperty("instrument.LoggerClass","rest.logger.FileLogger");
+      printTrace = Boolean.getBoolean(System.getProperty("instrument.isPrintTrace", "true"));
+      traceFileName = System.getProperty("instrument.traceFileName","trace.txt"); 
+      analysisClass = "rest/logger/DJVM";
+      jsonFile = System.getProperty("instrument.inputJsonFile","output.json");   
   }
 
   private Object getObject(String className) {
@@ -29,7 +28,6 @@ public class Config {
       Class<?> clazz = Class.forName(className);
       
       Object ret = clazz.newInstance();
-      System.out.println("getclass:"+className);
       return ret;
     } catch (ClassNotFoundException e) {
       e.printStackTrace();

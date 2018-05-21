@@ -117,7 +117,8 @@ public class ForQueryClassVisitor extends ClassVisitor{
 	}
 	
 	public static void main(String[] args) {
-		LinkedList<File> files = findClassFiles("/Users/Pig-yang/Documents/springboot项目/spring-petclinic-master/target/classes/org/springframework/samples/petclinic");
+		String testedProject = System.getProperty("test.classFiles", ".");
+		LinkedList<File> files = findClassFiles(testedProject);
 		
 		InputStream in = null;
 		ForQueryClassVisitor qv = new ForQueryClassVisitor();
@@ -141,7 +142,8 @@ public class ForQueryClassVisitor extends ClassVisitor{
 	}
 	
 	public static void outputAsJson(ForQueryClassVisitor qv) {
-		File output = new File(System.getProperty("user.dir")+"/output.json");
+		String outputJpaAsJsonFileName = System.getProperty("output.JsonFileName",System.getProperty("user.dir")+"/output.json");
+		File output = new File(outputJpaAsJsonFileName);
 		
 		try {
 			if(!output.exists()) {
