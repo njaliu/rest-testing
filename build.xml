@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="jar" name="rest-testing">	
+	<property environment="env"/>
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="build" />
+	<property name="lib.dir" value="lib" />
+	<property name="name" value="rest-testing" />
+
+	<path id="master-classpath">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+		<pathelement path="${build.dir}" />
+	</path>
+	
+	<pathconvert property="lib" pathsep=" ">  
+	        <mapper>  
+	            <chainedmapper>  
+	                <flattenmapper />  
+	                <globmapper from="*" to="lib/*" />  
+	            </chainedmapper>  
+	        </mapper>  
+	        <fileset dir="${lib.dir}">  
+	            <include name="*.jar" />  
+	        </fileset>  
+	</pathconvert>  
+	
+	<target name="build" depends="cleanup"
+		description="Compile main source tree java files">		
+		<delete dir="${build.dir}/classes"></delete>
+		<mkdir dir="${build.dir}/classes" />
+		<javac destdir="${build.dir}/classes" encoding="UTF-8" includeAntRuntime="false">
+			<src path="${src.dir}" />
+			<classpath refid="master-classpath" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="build"
+		description="Compress the java class files to jar">
+
+		<mkdir dir="${build.dir}/jar" />
+		<delete file="${build.dir}/jar/${name}.jar" />		
+		<manifest file="${build.dir}/MANIFEST.MF">
+			<attribute name="Class-Path" value=". ${lib}"/>
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Premain-Class" value="rest.instrument.InstructionTransformer" />
+			<attribute name="Can-Redefine-Classes" value="true"/>
+		</manifest>
+
+		
+		<jar destfile="${build.dir}/jar/${name}.jar"
+			basedir="${build.dir}/classes"
+			manifest="${build.dir}/MANIFEST.MF">
+			<zipfileset dir="${lib.dir}" prefix="lib">
+			    <include name="*.jar"/>
+			</zipfileset>
+		</jar>
+	</target>
+
+	<target name="cleanup"> 
+		<delete dir="${build.dir}/classes" />
+	</target>
+</project>

@@ -1,0 +1,6 @@
+INVOKESPECIAL iid=1025 mid=1 tid=1 owner=java/lang/Object name=<init> desc=()V syn=0
+INVOKESPECIAL iid=2049 mid=2 tid=1 owner=test/TestInnerClass name=<init> desc=()V syn=0
+INVOKESPECIAL iid=4097 mid=4 tid=1 owner=java/lang/Object name=<init> desc=()V syn=0
+INVOKESPECIAL iid=3073 mid=3 tid=1 owner=test/TestInnerClass$InnerClass name=<init> desc=(Ltest/TestInnerClass;)V syn=0
+INVOKEVIRTUAL iid=2050 mid=2 tid=1 owner=test/TestInnerClass name=getInnerClass desc=()Ltest/TestInnerClass$InnerClass; syn=0
+INVOKEVIRTUAL iid=2051 mid=2 tid=1 owner=java/io/PrintStream name=println desc=(Ljava/lang/String;)V syn=0
