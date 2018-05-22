@@ -8,7 +8,7 @@ import rest.logger.inst.*;
  * @author aliu
  *
  */
-public abstract class Analysis extends AbstractLogger{
+public abstract class Analysis extends AbstractLogger implements Constants{
 	
 	/**
 	 * Analysis probe APIs that should be implemented by sub-Analysis classes.
@@ -22,8 +22,10 @@ public abstract class Analysis extends AbstractLogger{
 	@Override
 	protected void log(Instruction insn) {
 		if (insn instanceof INVOKEINTERFACE) {
-			if (!((INVOKEINTERFACE)insn).access.equals("NON_JPA")) {
-				
+			if (((INVOKEINTERFACE)insn).access.contains(WRITE_ACCESS_CODE)) {
+				writeAccess((INVOKEINTERFACE) insn);
+			} else if (((INVOKEINTERFACE)insn).access.contains(READ_ACCESS_CODE)) {
+				readAccess((INVOKEINTERFACE) insn);
 			}
 		} else if (insn instanceof MONITORENTER) {
 			onMonitorEnter((MONITORENTER) insn);
