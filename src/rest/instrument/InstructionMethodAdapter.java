@@ -2,6 +2,7 @@ package rest.instrument;
 
 import java.io.IOException;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
@@ -53,7 +54,7 @@ public class InstructionMethodAdapter extends MethodVisitor implements Opcodes{
 	    Utils.addValueThisInsn(mv, desc, methodNamePrefix);
 	 }
 	
-	private void addMethodCallInsn(MethodVisitor mv, int opcode, String owner, String name, String desc ) {
+	private void addMethodCallInsn(MethodVisitor mv, int opcode, String owner, String name, String desc, JSONArray jArray ) {
 		addSyn(mv,owner+":"+name);
 	    	addThreadId(mv);
 		addBipushInsn(mv, instrumentationState.incAndGetId());
@@ -61,14 +62,18 @@ public class InstructionMethodAdapter extends MethodVisitor implements Opcodes{
 		mv.visitLdcInsn(owner);
 		mv.visitLdcInsn(name);
 		mv.visitLdcInsn(desc);
+		if(jArray != null)
+			mv.visitLdcInsn(jArray.toString());
+		else
+			mv.visitLdcInsn("NON_JPA");
 		if(opcode == INVOKESPECIAL)
-			mv.visitMethodInsn(INVOKESTATIC, Config.instance.analysisClass, "INVOKESPECIAL", "(IJIILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", false);
+			mv.visitMethodInsn(INVOKESTATIC, Config.instance.analysisClass, "INVOKESPECIAL", "(IJIILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", false);
 		else if(opcode == INVOKEINTERFACE)
-			mv.visitMethodInsn(INVOKESTATIC, Config.instance.analysisClass, "INVOKEINTERFACE", "(IJIILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", false);
+			mv.visitMethodInsn(INVOKESTATIC, Config.instance.analysisClass, "INVOKEINTERFACE", "(IJIILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", false);
 		else if(opcode == INVOKEVIRTUAL)
-			mv.visitMethodInsn(INVOKESTATIC, Config.instance.analysisClass, "INVOKEVIRTUAL", "(IJIILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", false);
+			mv.visitMethodInsn(INVOKESTATIC, Config.instance.analysisClass, "INVOKEVIRTUAL", "(IJIILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", false);
 		else if(opcode == INVOKESTATIC)
-			mv.visitMethodInsn(INVOKESTATIC, Config.instance.analysisClass, "INVOKESTATIC", "(IJIILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", false);
+			mv.visitMethodInsn(INVOKESTATIC, Config.instance.analysisClass, "INVOKESTATIC", "(IJIILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", false);
 		
 	}
 	
@@ -99,28 +104,29 @@ public class InstructionMethodAdapter extends MethodVisitor implements Opcodes{
     
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
-	    	if(instrumentationState.isMethodJPA(owner, name)) {
-	    		addMethodCallInsn(mv, opcode, owner, name, desc);
+    		JSONArray jArray;
+	    	if((jArray = instrumentationState.isMethodJPA(owner, name)) !=null) {
+	    		addMethodCallInsn(mv, opcode, owner, name, desc, jArray);
 	    	}
 	    	
 	    	if(owner.equals("java/lang/Thread")){
 	    		if(desc.equals("()V") && (name.equals("start") || name.equals("join"))) {
 	    			addValueThisInsn(mv, "J", "GETTHIS_");
-	    			addMethodCallInsn(mv, opcode, owner, name, desc);
+	    			addMethodCallInsn(mv, opcode, owner, name, desc, null);
 	    		}
 	    	}
 	    	
 	    	if(owner.equals("java/lang/Object")) {
 	    		if(desc.equals("()V") && (name.equals("wait") || name.equals("notify") || name.equals("notifyAll"))) {
 	    			addValueThisInsn(mv, "Ljava/lang/Object;", "GETTHIS_");
-	    			addMethodCallInsn(mv, opcode, owner, name, desc);
+	    			addMethodCallInsn(mv, opcode, owner, name, desc, null);
 	    		}
 	    	}
 	    	
 	    	if(owner.matches("^java/util/concurrent/locks.*")) {
 	    		if(desc.equals("()V") && (name.equals("lock") || name.equals("unlock") || name.equals("await") || name.equals("signal"))) {
 	    			addValueThisInsn(mv, "Ljava/lang/Object;", "GETTHIS_");
-	    			addMethodCallInsn(mv, opcode, owner, name, desc);
+	    			addMethodCallInsn(mv, opcode, owner, name, desc,null);
 	    		}
 	    	}
 	    	
@@ -131,7 +137,7 @@ public class InstructionMethodAdapter extends MethodVisitor implements Opcodes{
     @Override
     public void visitMaxs(int maxStack, int maxLocals) {
       mv.visitMaxs(
-          maxStack + 8,
+          maxStack + 10,
           maxLocals); //To change body of overridden methods use File | Settings | File Templates.
     }
   

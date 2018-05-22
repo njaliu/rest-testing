@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,18 +36,16 @@ public class GlobalStateForInstrumentation {
 	  return jb;
   }
   
-  public boolean isMethodJPA(String owner, String name) {
+  public JSONArray isMethodJPA(String owner, String name) {
 	  if(jb != null) {
 		  try {
-			if(jb.get(owner+"#_#"+name) != null) {
-				  return true;
-			  }
+			return (JSONArray) jb.get(owner+"#_#"+name);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
-			return false;
+			return null;
 		}
 	  }
-	  return false;
+	  return null;
   }
   
   

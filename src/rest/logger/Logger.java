@@ -13,13 +13,13 @@ public interface Logger {
 
   public void RETURN(long tid, int iid, int mid);
  
-  public void INVOKEVIRTUAL(int syn, long tid, int iid, int mid, String owner, String name, String desc);
+  public void INVOKEVIRTUAL(int syn, long tid, int iid, int mid, String owner, String name, String desc, String access);
 
-  public void INVOKESPECIAL(int syn, long tid, int iid, int mid, String owner, String name, String desc);
+  public void INVOKESPECIAL(int syn, long tid, int iid, int mid, String owner, String name, String desc, String access);
 
-  public void INVOKESTATIC(int syn, long tid, int iid, int mid, String owner, String name, String desc);
+  public void INVOKESTATIC(int syn, long tid, int iid, int mid, String owner, String name, String desc, String access);
 
-  public void INVOKEINTERFACE(int syn, long tid, int iid, int mid, String owner, String name, String desc);
+  public void INVOKEINTERFACE(int syn, long tid, int iid, int mid, String owner, String name, String desc, String access);
 
   public void MONITORENTER(Object ob, long tid, int iid, int mid);
 

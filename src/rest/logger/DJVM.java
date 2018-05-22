@@ -34,26 +34,27 @@ public final class DJVM {
 	 intp.RETURN(tid, iid, mid);
   }
   
-  public static void INVOKEVIRTUAL(int syn, long tid, int iid, int mid, String owner, String name, String desc) {
-     intp.INVOKEVIRTUAL(syn, tid, iid, mid, owner, name, desc);
+  
+  public static void INVOKEVIRTUAL(int syn, long tid, int iid, int mid, String owner, String name, String desc, String access) {
+	  intp.INVOKEVIRTUAL(syn, tid, iid, mid, owner, name, desc, access);
   }
 
-  public static void INVOKESPECIAL(int syn, long tid, int iid, int mid, String owner, String name, String desc) {
-     intp.INVOKESPECIAL(syn, tid, iid, mid, owner, name, desc);
+  public static void INVOKESPECIAL(int syn, long tid, int iid, int mid, String owner, String name, String desc, String access) {
+	  intp.INVOKESPECIAL(syn, tid, iid, mid, owner, name, desc, access);
   }
 
-  public static void INVOKESTATIC(int syn, long tid, int iid, int mid, String owner, String name, String desc) {
-     intp.INVOKESTATIC(syn, tid, iid, mid, owner, name, desc);
+  public static void INVOKESTATIC(int syn, long tid, int iid, int mid, String owner, String name, String desc, String access) {
+	  intp.INVOKESTATIC(syn, tid, iid, mid, owner, name, desc, access);
   }
 
-  public static void INVOKEINTERFACE(int syn, long tid, int iid, int mid, String owner, String name, String desc) {
-     intp.INVOKEINTERFACE(syn, tid, iid, mid, owner, name, desc);
+  public static void INVOKEINTERFACE(int syn, long tid, int iid, int mid, String owner, String name, String desc, String access) {
+	  intp.INVOKEINTERFACE(syn, tid, iid, mid, owner, name, desc, access);
   }
 
   public static void MONITORENTER(Object ob, long tid, int iid, int mid) {
-     intp.MONITORENTER(ob,tid, iid, mid);
+	  intp.MONITORENTER(ob,tid, iid, mid);
   }
-
+  
   public static void MONITOREXIT(Object ob, long tid, int iid, int mid) {
      intp.MONITOREXIT(ob, tid, iid, mid);
   }

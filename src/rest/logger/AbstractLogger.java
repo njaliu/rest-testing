@@ -30,20 +30,20 @@ public abstract class AbstractLogger implements Logger {
 	  log(new RETURN(tid, iid, mid));
   }
   
-  public void INVOKEVIRTUAL(int syn, long tid, int iid, int mid, String owner, String name, String desc) {
-	  log(new INVOKEVIRTUAL(syn, tid, iid, mid, owner, name, desc));
+  public void INVOKEVIRTUAL(int syn, long tid, int iid, int mid, String owner, String name, String desc, String access) {
+	  log(new INVOKEVIRTUAL(syn, tid, iid, mid, owner, name, desc, access));
   }
 
-  public void INVOKESPECIAL(int syn, long tid, int iid, int mid, String owner, String name, String desc) {
-	  log(new INVOKESPECIAL(syn, tid, iid, mid, owner, name, desc));
+  public void INVOKESPECIAL(int syn, long tid, int iid, int mid, String owner, String name, String desc, String access) {
+	  log(new INVOKESPECIAL(syn, tid, iid, mid, owner, name, desc, access));
   }
 
-  public void INVOKESTATIC(int syn, long tid, int iid, int mid, String owner, String name, String desc) {
-	  log(new INVOKESTATIC(syn, tid, iid, mid, owner, name, desc));
+  public void INVOKESTATIC(int syn, long tid, int iid, int mid, String owner, String name, String desc, String access) {
+	  log(new INVOKESTATIC(syn, tid, iid, mid, owner, name, desc, access));
   }
 
-  public void INVOKEINTERFACE(int syn, long tid, int iid, int mid, String owner, String name, String desc) {
-	  log(new INVOKEINTERFACE(syn, tid, iid, mid, owner, name, desc));
+  public void INVOKEINTERFACE(int syn, long tid, int iid, int mid, String owner, String name, String desc, String access) {
+	  log(new INVOKEINTERFACE(syn, tid, iid, mid, owner, name, desc, access));
   }
 
   public void MONITORENTER(Object ob, long tid, int iid, int mid) {
